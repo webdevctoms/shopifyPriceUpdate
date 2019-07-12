@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const {Prices} = require("../models/priceModel");
+const {checkKey} = require("../tools/checkKey");
 
-router.get("/",(req,res) => {
+router.get("/",checkKey,(req,res) => {
 	
 	return Prices.create({
 		product_id:"1234",
