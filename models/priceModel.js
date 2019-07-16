@@ -7,6 +7,7 @@ const variantSchema = mongoose.Schema({
 //main shcema
 const priceSchema = mongoose.Schema({
 	product_id:{type:String,required:true,unique:true},
+	product_title:{type:String},
 	variant_data:[variantSchema]
 });
 
