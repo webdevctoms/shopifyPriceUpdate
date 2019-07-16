@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 //subschema to avoid auto id creation
 const variantSchema = mongoose.Schema({
 	variant_id:{type:String,required:true},
-	variant_price:String	
+	variant_price:String,
+	item_code:{type:String}
 },{_id:false});
 //main shcema
 const priceSchema = mongoose.Schema({
