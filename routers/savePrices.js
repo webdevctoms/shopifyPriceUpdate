@@ -24,13 +24,14 @@ router.get("/",(req,res) => {
 	*/
 
 	let getPriceDatas = new GetPrices(URLUS,USERK,USERP);
-	return getPriceDatas.getData()
+	return getPriceDatas.getData([],0)
 
 	.then(productData => {
 		console.log("Product Data: ",productData.length);
 		let oldData = new OldData(productData,Prices);
-
-		return oldData.saveData(1)
+		//let copies = oldData.checkForCopies();
+		//console.log("Copy data: ",copies.length);
+		return oldData.saveData(0)
 		
 	})
 	.then(data => {
