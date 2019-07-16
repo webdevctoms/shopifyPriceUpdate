@@ -1,10 +1,13 @@
+require('dotenv').config();
 const express = require("express");
 const router = express.Router();
 const {Prices} = require("../models/priceModel");
 const {checkKey} = require("../tools/checkKey");
+const {GetPrices} = require("../getPriceData/getPrices");
+const {URLUS,USERK,USERP} = require('../config');
 
-router.get("/",checkKey,(req,res) => {
-	
+router.get("/",(req,res) => {
+	/*
 	return Prices.create({
 		product_id:"1234",
 		variant_data:[
@@ -17,12 +20,16 @@ router.get("/",checkKey,(req,res) => {
 			}
 		]
 	})
+	*/
 
-	.then(priceData => {
-		console.log("Length: ",priceData);
+	let getPriceDatas = new GetPrices(URLUS,USERK,USERP);
+	return getPriceDatas.getData()
+
+	.then(productData => {
+		console.log("Product Data: ",productData);
 		return res.json({
 			status:200,
-			data:priceData
+			message:"done"
 		});
 	})
 	.catch(err => {

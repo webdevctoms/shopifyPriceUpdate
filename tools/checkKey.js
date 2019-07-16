@@ -1,6 +1,7 @@
 const {CKEY} = require('../config');
 
 let checkKey = function(req, res, next){
+	console.log("test3")
 		if(req.query.ckey !== CKEY){
 		return res.status(422).json({
 			code:422,
