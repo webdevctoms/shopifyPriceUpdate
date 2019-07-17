@@ -21,7 +21,7 @@ function compareVariants(productData,productIndex,results){
 
 			.then(product => {
 				console.log("product from db: ",product[0].variant_data.length,product[0].product_title);
-				console.log('product after then: ',productData[productIndex].variants.length,productData[productIndex].title);
+				console.log('product from shopify: ',productData[productIndex].variants.length,productData[productIndex].title);
 
 				if(productData[productIndex].variants.length !== product[0].variant_data.length){
 					console.log("found error",productData[productIndex].title);

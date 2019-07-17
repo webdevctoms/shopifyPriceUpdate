@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const {checkKey} = require("../tools/checkKey");
-const {GetPrices} = require("../classes/getPrices");
+const {SaveToShopify} = require("../classes/saveToShopify");
 const {Prices} = require("../models/priceModel");
+const {URLUS,USERK,USERP} = require('../config');
 
 router.get("/",checkKey,(req,res) =>{
 	let productID = req.query.productid;
@@ -17,6 +18,34 @@ router.get("/",checkKey,(req,res) =>{
 	})
 	.catch(err=>{
 		console.log("Error getting single data: ",err);
+	})
+});
+
+router.get("/saveOld",checkKey,(req,res) =>{
+	
+	return Prices.find({})
+
+	.then(products => {
+		let saveToShopify = new SaveToShopify(products,URLUS,USERK,USERP);
+
+		return saveToShopify.saveData(0)
+		//console.log(products);
+		/*
+		return res.json({
+			status:200,
+			data:products.map(product =>product.serialize())
+		})
+		*/
+	})
+
+	.then(product =>{
+		return res.json({
+			status:200,
+			data:product
+		})
+	})
+	.catch(err=>{
+		console.log("Error getting all data: ",err);
 	})
 });
 
