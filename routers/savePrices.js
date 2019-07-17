@@ -8,20 +8,6 @@ const {OldData} = require("../classes/saveOldData");
 const {URLUS,USERK,USERP} = require('../config');
 
 router.get("/",checkKey,(req,res) => {
-	/*
-	return Prices.create({
-		product_id:"1234",
-		variant_data:[
-			{
-				variant_id:"12345",
-				variant_price:"50.00"
-			},
-			{
-				variant_id:"12345678"
-			}
-		]
-	})
-	*/
 
 	let getPriceDatas = new GetPrices(URLUS,USERK,USERP);
 	return getPriceDatas.getData([],0)

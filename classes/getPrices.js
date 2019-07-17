@@ -44,7 +44,7 @@ GetPrices.prototype.getData = function(dataArray,page) {
 			}
 			else{
 				resolve(dataArray);
-			}		2063104049245
+			}
 
 		}.bind(this));
 	});
