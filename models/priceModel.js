@@ -12,10 +12,11 @@ const priceSchema = mongoose.Schema({
 	variant_data:[variantSchema]
 });
 
-priceSchema.serialize = function(){
+priceSchema.methods.serialize = function(){
 	return{
 		product_id:this.product_id,
-		variant_data:this.variant_ids
+		product_title:this.product_title,
+		variant_data:this.variant_data
 	}
 };
 

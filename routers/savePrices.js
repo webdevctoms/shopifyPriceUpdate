@@ -7,7 +7,7 @@ const {GetPrices} = require("../classes/getPrices");
 const {OldData} = require("../classes/saveOldData");
 const {URLUS,USERK,USERP} = require('../config');
 
-router.get("/",(req,res) => {
+router.get("/",checkKey,(req,res) => {
 	/*
 	return Prices.create({
 		product_id:"1234",

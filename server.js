@@ -5,11 +5,13 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 const {router:saveRouter} = require('./routers/savePrices');
+const {router:getDataRouter} = require('./routers/getDataDB');
 const app = express();
 app.use(jsonParser);
 let server;
 
 app.use("/savePrices",saveRouter);
+app.use("/getData",getDataRouter);
 
 function runServer( databaseUrl, port = PORT) {
   return new Promise((resolve, reject) => {
