@@ -39,6 +39,7 @@ router.get("/saveOld",checkKey,(req,res) =>{
 	})
 
 	.then(product =>{
+		console.log("sending response")
 		return res.json({
 			status:200,
 			data:product

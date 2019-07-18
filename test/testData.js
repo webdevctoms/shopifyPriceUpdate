@@ -20,6 +20,13 @@ function compareVariants(productData,productIndex,results){
 			return Prices.find({'product_id':productID})
 
 			.then(product => {
+				/*
+				if(product[0].product_title.includes("Dragon")){
+					console.log("========================================dragon legnths: ");
+					console.log("product from db: ",product[0].variant_data.length,product[0].product_title);
+					console.log('product from shopify: ',productData[productIndex].variants.length,productData[productIndex].title);
+				}
+				*/
 				console.log("product from db: ",product[0].variant_data.length,product[0].product_title);
 				console.log('product from shopify: ',productData[productIndex].variants.length,productData[productIndex].title);
 
@@ -62,7 +69,7 @@ describe('Test Length of saved data against shopify data',function(){
 		});
 
 		it('should get data',function(){
-			this.timeout(10000);
+			this.timeout(20000);
 			let getPriceDatas = new GetPrices(URLUS,USERK,USERP);
 			return getPriceDatas.getData([],0)
 

@@ -43,6 +43,7 @@ GetPrices.prototype.getData = function(dataArray,page) {
 				resolve(this.getData(dataArray,page + 1));
 			}
 			else{
+				
 				resolve(dataArray);
 			}
 
