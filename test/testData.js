@@ -14,7 +14,7 @@ function compareVariants(productData,productIndex,results){
 		results = [];
 	}
 	var promise = new Promise((resolve,reject) => {
-		console.log("productIndex & productData.length: ",productIndex,productData.length);
+		console.log("variant test productIndex & productData.length: ",productIndex,productData.length);
 		if(productIndex < productData.length){
 			let productID = productData[productIndex].id
 			return Prices.find({'product_id':productID})
@@ -83,8 +83,9 @@ describe('Test Length of saved data against shopify data',function(){
 			.catch(err => {
 				console.log(err)
 			})
-		})
-
+		});
+		//uncomment to test length
+		
 		it('should all have matching data lengths',function(){
 			this.timeout(90000);
 			let getPriceDatas = new GetPrices(URLUS,USERK,USERP);
@@ -101,6 +102,7 @@ describe('Test Length of saved data against shopify data',function(){
 			.catch(err => {
 				console.log(err)
 			})
-		})
+		});
+		
 	});
 });
