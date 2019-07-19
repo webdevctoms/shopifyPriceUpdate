@@ -21,21 +21,16 @@ router.get("/",checkKey,(req,res) =>{
 	})
 });
 //get all products from db and save to shopify
-router.get("/saveOld",checkKey,(req,res) =>{
-	
+router.get("/save",checkKey,(req,res) =>{
+	let conversion = req.query.conversion ? parseFloat(req.query.conversion) : 1;
+	console.log(conversion);
 	return Prices.find({})
 
 	.then(products => {
 		let saveToShopify = new SaveToShopify(products,URLUS,USERK,USERP);
 
-		return saveToShopify.saveData(0)
-		//console.log(products);
-		/*
-		return res.json({
-			status:200,
-			data:products.map(product =>product.serialize())
-		})
-		*/
+		return saveToShopify.saveData(0,conversion)
+
 	})
 
 	.then(product =>{

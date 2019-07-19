@@ -7,28 +7,28 @@ function SaveToShopify(productData,url,user_k,user_p){
 	this.user_p = user_p;
 }
 
-SaveToShopify.prototype.convertVariants = function(variants){
+SaveToShopify.prototype.convertVariants = function(variants,conversionFactor){
 	let shopifyVariants = [];
 
 	for(let i = 0;i < variants.length;i++){
 		let varaint = {};
 		varaint.id = String(variants[i].variant_id);
-		varaint.price = String(variants[i].variant_price);
+		varaint.price = String(parseFloat(variants[i].variant_price) / conversionFactor);
 		shopifyVariants.push(varaint);
 	}
 
 	return shopifyVariants;
 }
 
-SaveToShopify.prototype.saveData = function(productIndex) {
+SaveToShopify.prototype.saveData = function(productIndex,conversionFactor) {
 	var promise = new Promise((resolve,reject) => {
 		let productID = this.productData[productIndex].product_id ? this.productData[productIndex].product_id:this.productData[productIndex].id;
 		//let productID = 2063102705757;
 		let newUrl = this.url + "products/" + productID + ".json";
 		console.log(newUrl);
 		const authKey = Buffer.from(this.user_k + ":" + this.user_p).toString('base64');
-		let shopifyVariants = this.convertVariants(this.productData[productIndex].variant_data);
-		//console.log(shopifyVariants);
+		let shopifyVariants = this.convertVariants(this.productData[productIndex].variant_data,conversionFactor);
+		console.log(shopifyVariants);
 		const options = {
 			url:newUrl,
 			method:"PUT",
@@ -52,7 +52,7 @@ SaveToShopify.prototype.saveData = function(productIndex) {
 			//let parsedBody = JSON.parse(body);
 			console.log("===============PUT data: ",productIndex,this.productData.length,this.productData[productIndex].product_title);
 			if(productIndex < this.productData.length - 1){
-				resolve(this.saveData(productIndex + 1));
+				resolve(this.saveData(productIndex + 1,conversionFactor));
 			}
 			else{
 				console.log("final price update");
