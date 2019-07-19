@@ -26,7 +26,7 @@ describe('Test Old data with Shopify data',function(){
 		})
 
 		.then(results => {
-			console.log("=========================results from compare prices: ", results.length);
+			console.log("=========================results from compare prices: ",results, results.length);
 			expect(results).to.have.lengthOf(0);
 		})
 

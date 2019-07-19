@@ -19,7 +19,7 @@ function comparePrices(shopifyProducts,index,conversionFactor,results){
 
 						if(shopifyProducts[index].variants[i].id == product[0].variant_data[k].variant_id){
 							IDMatch = true;
-							let roundedPrice = Math.round(parseFloat(product[0].variant_data[k].variant_price) * conversionFactor * 100) / 100;
+							let roundedPrice = Math.round(parseFloat(product[0].variant_data[k].variant_price) / conversionFactor * 100) / 100;
 							//handle whole numbers
 							if(roundedPrice % 1 === 0){
 								roundedPrice = String(roundedPrice) + '.00';
@@ -31,14 +31,14 @@ function comparePrices(shopifyProducts,index,conversionFactor,results){
 							else{
 								roundedPrice = String(roundedPrice);
 							}
-							
+
 							if(shopifyProducts[index].variants[i].price == roundedPrice){
 								priceMactch = true;
 								//break;
 							}
 						}
 						if(shopifyProducts[index].id == 2063113420893){
-							let roundedPrice = String(Math.round(parseFloat(product[0].variant_data[k].variant_price) * conversionFactor * 100) / 100);
+							let roundedPrice = String(Math.round(parseFloat(product[0].variant_data[k].variant_price) / conversionFactor * 100) / 100);
 							console.log("============================ids: ",shopifyProducts[index].variants[i].id,product[0].variant_data[k].variant_id,shopifyProducts[index].variants[i].id == product[0].variant_data[k].variant_id);
 							console.log("============================id count: ",IDMatch);
 							console.log("============================prices: ",shopifyProducts[index].variants[i].price,product[0].variant_data[k].variant_price,roundedPrice);
