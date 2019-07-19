@@ -6,7 +6,7 @@ const {checkKey} = require("../tools/checkKey");
 const {GetPrices} = require("../classes/getPrices");
 const {OldData} = require("../classes/saveOldData");
 const {URLUS,USERK,USERP} = require('../config');
-
+//capture prices from site and save to db
 router.get("/",checkKey,(req,res) => {
 
 	let getPriceDatas = new GetPrices(URLUS,USERK,USERP);

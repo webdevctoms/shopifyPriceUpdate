@@ -41,8 +41,9 @@ OldData.prototype.checkForCopies = function() {
 OldData.prototype.saveData = function(productIndex) {
 	//save one product
 	let promise = new Promise((resolve,reject) => {
-		console.log("===========save product data: ",productIndex,this.productData.length,this.productData[productIndex].title);
+		
 		if(productIndex !== this.productData.length){
+			console.log("===========save product data: ",productIndex,this.productData.length,this.productData[productIndex].title);
 			let variantData = this.getVariantData(this.productData[productIndex].variants);
 			return this.priceModel.create({
 				product_id:this.productData[productIndex].id,

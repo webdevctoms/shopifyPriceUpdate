@@ -4,7 +4,7 @@ const {checkKey} = require("../tools/checkKey");
 const {SaveToShopify} = require("../classes/saveToShopify");
 const {Prices} = require("../models/priceModel");
 const {URLUS,USERK,USERP} = require('../config');
-
+//get single product from db
 router.get("/",checkKey,(req,res) =>{
 	let productID = req.query.productid;
 	return Prices.find({'product_id':productID})
@@ -20,7 +20,7 @@ router.get("/",checkKey,(req,res) =>{
 		console.log("Error getting single data: ",err);
 	})
 });
-
+//get all products from db and save to shopify
 router.get("/saveOld",checkKey,(req,res) =>{
 	
 	return Prices.find({})

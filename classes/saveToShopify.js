@@ -28,7 +28,7 @@ SaveToShopify.prototype.saveData = function(productIndex) {
 		console.log(newUrl);
 		const authKey = Buffer.from(this.user_k + ":" + this.user_p).toString('base64');
 		let shopifyVariants = this.convertVariants(this.productData[productIndex].variant_data);
-		console.log(shopifyVariants);
+		//console.log(shopifyVariants);
 		const options = {
 			url:newUrl,
 			method:"PUT",
@@ -45,7 +45,7 @@ SaveToShopify.prototype.saveData = function(productIndex) {
 		//console.log(options);
 
 		request(options,function(error,response,body){
-			if(body.errors || this.productData[productIndex].product_title.includes('ATX') || this.productData[productIndex].product_title.includes("Crye CAGE Armor Chassis") || this.productData[productIndex].product_title.includes("Assault Lead Climber's Rack")){
+			if(body.errors){
 				console.log(body);
 			}
 			//console.log(body);

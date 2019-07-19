@@ -42,6 +42,10 @@ function compareVariants(productData,productIndex,results){
 					resolve(compareVariants(productData,productIndex + 1,results));
 				}
 			})
+			.catch(err => {
+				console.log("error comparing data: ",err);
+				reject(err);
+			})
 		}
 		else{
 			resolve(results);
