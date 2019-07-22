@@ -22,7 +22,9 @@ describe('Test Old data with Shopify data',function(){
 		return getPriceDatas.getData([],0)
 
 		.then(productData => {
-			return comparePrices(productData,0,1,[])
+			//change this to test after conversion
+			let conversion = 1.27;
+			return comparePrices(productData,0,conversion,[])
 		})
 
 		.then(results => {
